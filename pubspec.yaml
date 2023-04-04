@@ -1,7 +1,7 @@
 name: getx
 description: A new Flutter project.
 version: 0.0.1
-homepage:
+homepage: https://sdhzm.tech
 
 environment:
   sdk: '>=2.19.4 <3.0.0'
@@ -12,12 +12,11 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

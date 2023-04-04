@@ -9,6 +9,9 @@ class Page2View extends StatelessWidget {
   Widget build(BuildContext context) {
     final Page2Logic logic = Page2Logic().put();
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("page2"),
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
