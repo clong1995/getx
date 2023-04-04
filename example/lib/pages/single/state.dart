@@ -1,0 +1,3 @@
+class SingleState {
+  String datetime = "";
+}
