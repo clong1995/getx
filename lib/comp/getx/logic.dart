@@ -1,19 +1,34 @@
 import 'package:flutter/material.dart';
-import 'logic_dict.dart';
 
 import 'getx_widget.dart';
+import 'logic_dict.dart';
+
+typedef Update = void Function();
 
 abstract class Logic<T> {
-  void Function() update = () => print("not push");
+  final Map<String, Update> _updateDict = {};
+  final List<Update> _updateList = [];
+
+  void update([List<String>? ids]) {
+    if (ids != null) {
+      _updateDict.forEach((key, value) {
+        if (ids.contains(key)) {
+          value.call();
+        }
+      });
+      return;
+    } else {
+      for (Update element in _updateList) {
+        element.call();
+      }
+    }
+  }
 
   T put();
 
   T getPut(T logic) {
     LogicDict.set<T>(logic);
-    T? oldLogic = LogicDict.get<T>();
-    if (oldLogic != null) logic = oldLogic;
-    update = (logic as Logic).update;
-    return logic;
+    return LogicDict.get<T>();
   }
 
   Widget builder({
@@ -22,7 +37,13 @@ abstract class Logic<T> {
   }) {
     return GetxWidget(
       builder: builder,
-      onInit: (void Function() update) => this.update = update,
+      onInit: (Update update) {
+        if (id == null) {
+          _updateList.add(update);
+        } else {
+          _updateDict[id] = update;
+        }
+      },
     );
   }
 }

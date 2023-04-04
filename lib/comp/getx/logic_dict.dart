@@ -7,8 +7,7 @@ class LogicDict<T> {
     }
   }
 
-  static T? get<T>() {
-    if (!_logicDict.containsKey(T.hashCode)) null;
+  static T get<T>() {
     return _logicDict[T.hashCode] as T;
   }
 }

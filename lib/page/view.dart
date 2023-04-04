@@ -15,12 +15,18 @@ class MyView extends StatelessWidget {
           builder: ()=>Text("${logic.state.count}"),
         ),
         ElevatedButton(
-          onPressed: logic.onPressed,
+          onPressed: logic.onAddPressed,
           child: const Text("ADD"),
+        ),
+        logic.builder(
+          id: "datetime",
+          builder: ()=>Text(logic.state.datetime),
+        ),
+        ElevatedButton(
+          onPressed: logic.onNowPressed,
+          child: const Text("NOW"),
         ),
       ],
     );
   }
 }
-
-

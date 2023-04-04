@@ -4,9 +4,13 @@ import 'state.dart';
 class MyLogic extends Logic<MyLogic> {
   final MyState state = MyState();
 
-  void onPressed() {
+  void onAddPressed() {
     state.count++;
-    update();
+    update(["count"]);
+  }
+  void onNowPressed() {
+    state.datetime = DateTime.now().toString();
+    update(["datetime"]);
   }
 
   @override
