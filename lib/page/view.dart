@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:getx/page/comp/view4/view.dart';
 import 'comp/view1/view.dart';
 import 'comp/view2/view.dart';
+import 'comp/view3/view.dart';
 import 'logic.dart';
 
 class MyView extends StatelessWidget {
@@ -40,7 +42,9 @@ class MyView extends StatelessWidget {
             View1View(),
             View2View(),
           ],
-        )
+        ),
+        const View3View(),
+        const View4View(),
       ],
     );
   }

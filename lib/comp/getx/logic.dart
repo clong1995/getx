@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'getx_widget.dart';
 import 'logic_dict.dart';
 
-typedef Update = void Function();
-
 abstract class Logic<T> {
-  final Map<String, Update> _updateDict = {};
-  final List<Update> _updateList = [];
+  final Map<String, void Function()> _updateDict = {};
+  final List<void Function()> _updateList = [];
 
   void update([List<String>? ids]) {
     if (ids != null) {
@@ -18,7 +16,7 @@ abstract class Logic<T> {
       });
       return;
     } else {
-      for (Update element in _updateList) {
+      for (void Function() element in _updateList) {
         element.call();
       }
     }
@@ -26,7 +24,16 @@ abstract class Logic<T> {
 
   T put();
 
+  //init
+  void onInit() {}
+
+  //dispose
+  void onDispose() {}
+
   T getPut(T logic) {
+    if(!LogicDict.contain<T>()){
+      onInit();
+    }
     LogicDict.set<T>(logic);
     return LogicDict.get<T>();
   }
@@ -39,13 +46,14 @@ abstract class Logic<T> {
   }) {
     return GetxWidget(
       builder: builder,
-      onInit: (Update update) {
+      onInit: (void Function() update) {
         if (id == null) {
           _updateList.add(update);
         } else {
           _updateDict[id] = update;
         }
       },
+      onDispose: onDispose,
     );
   }
 }

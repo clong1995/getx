@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class GetxWidget extends StatefulWidget {
   final Widget Function() builder;
   final void Function(void Function() update) onInit;
+  final void Function() onDispose;
 
   const GetxWidget({
     Key? key,
     required this.builder,
     required this.onInit,
+    required this.onDispose,
   }) : super(key: key);
 
   @override
@@ -25,4 +27,10 @@ class _GetxWidgetState extends State<GetxWidget> {
 
   @override
   Widget build(BuildContext context) => widget.builder();
+
+  @override
+  void dispose() {
+    widget.onDispose();
+    super.dispose();
+  }
 }

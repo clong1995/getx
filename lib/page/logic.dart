@@ -10,6 +10,7 @@ class MyLogic extends Logic<MyLogic> {
     state.count++;
     update(["count"]);
   }
+
   void onNowPressed() {
     state.datetime = DateTime.now().toString();
     update(["datetime"]);
@@ -19,6 +20,13 @@ class MyLogic extends Logic<MyLogic> {
     state.random = Random().nextInt(100);
     update();
   }
+
+  @override
+  void onInit() {
+    super.onInit();
+    print("onInit");
+  }
+
 
   @override
   MyLogic put() => getPut(this);
