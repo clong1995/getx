@@ -31,6 +31,8 @@ abstract class Logic<T> {
     return LogicDict.get<T>();
   }
 
+  E find<E>() => LogicDict.get<E>();
+
   Widget builder({
     String? id,
     required Widget Function() builder,

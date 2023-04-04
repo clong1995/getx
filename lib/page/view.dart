@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'comp/view1/view.dart';
+import 'comp/view2/view.dart';
 import 'logic.dart';
 
 class MyView extends StatelessWidget {
@@ -26,6 +28,19 @@ class MyView extends StatelessWidget {
           onPressed: logic.onNowPressed,
           child: const Text("NOW"),
         ),
+        logic.builder(
+          builder: ()=>Text("${logic.state.random}"),
+        ),
+        ElevatedButton(
+          onPressed: logic.onRandomPressed,
+          child: const Text("RANDOM"),
+        ),
+        Row(
+          children: const [
+            View1View(),
+            View2View(),
+          ],
+        )
       ],
     );
   }
