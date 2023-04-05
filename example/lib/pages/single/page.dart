@@ -10,7 +10,7 @@ class SinglePage extends StatelessWidget {
     final SingleLogic logic = SingleLogic().put();
     return Scaffold(
       appBar: AppBar(
-        title: Text("单个刷新"),
+        title: const Text("单个刷新"),
       ),
       body: Center(
         child: Column(

@@ -1,3 +1,4 @@
+import 'package:getx/logic.dart';
 import 'package:getx/getx.dart';
 import '../page2/view.dart';
 
@@ -12,7 +13,7 @@ class Page1Logic extends Logic<Page1Logic> {
   }
 
   void onPressed() {
-    navPush(() => const Page2View());
+    Getx.push(() => const Page2View());
   }
 
   @override

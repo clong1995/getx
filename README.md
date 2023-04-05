@@ -70,7 +70,7 @@ class MyLogic extends Logic<MyLogic> {
 }
 ```
 
-### 3. 路由api,不需要context
+### 3. 路由,不需要context
 
 navPush :跳转到一个新的页面  
 navPushAndRemove :关闭所有页面跳转到新的页面  

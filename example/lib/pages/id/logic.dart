@@ -1,4 +1,4 @@
-import 'package:getx/getx.dart';
+import 'package:getx/logic.dart';
 
 import 'state.dart';
 
