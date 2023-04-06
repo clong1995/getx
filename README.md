@@ -19,6 +19,10 @@
 main.dart
 
 ```dart
+import 'package:flutter/material.dart';
+import 'package:getx/getx.dart';
+import 'package:getx/key.dart';
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -51,6 +55,9 @@ class MyState {
 page.dart
 
 ```dart
+import 'package:flutter/material.dart';
+import 'logic.dart';
+
 class MyPage extends StatelessWidget {
   const MyPage({Key? key}) : super(key: key);
 
@@ -77,6 +84,9 @@ class MyPage extends StatelessWidget {
 logic.dart
 
 ```dart
+import 'package:getx/logic.dart';
+import 'state.dart';
+
 class MyLogic extends Logic<MyLogic> {
   final MyState state = MyState(); //<=== 状态数据
 
