@@ -5,6 +5,13 @@
 3. [x] 跨组件跨页面调用
 4. [x] 路由
 
+## 安装
+```yaml
+getx:
+    git:
+      url: https://github.com/clong1995/getx.git
+```
+
 ## 使用方法
 
 ### 1. 一个带状态的页面由三个文件构成，目录结构如下：
