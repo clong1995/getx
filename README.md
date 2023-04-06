@@ -6,8 +6,14 @@
 4. [x] 路由
 
 ## 安装
+
 ```yaml
-getx:
+dependencies:
+  flutter:
+    sdk: flutter
+  #....
+  #....
+  getx:
     git:
       url: https://github.com/clong1995/getx.git
 ```
