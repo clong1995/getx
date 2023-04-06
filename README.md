@@ -72,9 +72,9 @@ class MyLogic extends Logic<MyLogic> {
 
 ### 3. 路由,不需要context
 
-navPush :跳转到一个新的页面  
-navPushAndRemove :关闭所有页面跳转到新的页面  
-navPop :页面返回
+Getx.push :跳转到一个新的页面  
+Getx.pushAndRemove :关闭所有页面跳转到新的页面  
+Getx.pop :页面返回
 
 ### 4. 更多用法请看例子(example文件夹)
 
