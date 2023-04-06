@@ -16,6 +16,30 @@
 
 ### 2. 简单用法
 
+main.dart
+
+```dart
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp //<=== MaterialApp
+      (
+      navigatorKey: getxNavKey, //<=== 增加用于路由的key
+      home: Scaffold(
+        body: Text("你的app"),
+      ),
+    );
+  }
+}
+```
+
 state.dart
 
 ```dart
@@ -32,17 +56,15 @@ class MyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //添加并且获取logic
-    final MyLogic logic = MyLogic().put();
+    final MyLogic logic = MyLogic().put(); //<===添加并且获取logic
     return Scaffold(
       body: Column(
         children: [
-          //局部刷新的builder
-          logic.builder(
-            builder: () => Text("now:${logic.state.datetime}"), //state中的状态数据
+          logic.builder( //<=== 局部刷新的builder
+            builder: () => Text("now:${logic.state.datetime}"), //<=== state中的状态数据
           ),
           ElevatedButton(
-            onPressed: logic.onPressed, //logic中的点击事件
+            onPressed: logic.onPressed, //<=== logic中的点击事件
             child: const Text("NOW"),
           ),
         ],
@@ -56,7 +78,7 @@ logic.dart
 
 ```dart
 class MyLogic extends Logic<MyLogic> {
-  final MyState state = MyState(); //状态数据
+  final MyState state = MyState(); //<=== 状态数据
 
   void onPressed() {
     //修改状态数据
@@ -66,7 +88,7 @@ class MyLogic extends Logic<MyLogic> {
   }
 
   @override
-  MyLogic put() => putLogic(this); //添加到getx的管理中
+  MyLogic put() => putLogic(this); //<=== 添加到getx的管理中
 }
 ```
 
