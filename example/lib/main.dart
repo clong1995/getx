@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getx/getx.dart';
 import 'package:getx/key.dart';
+
 import 'pages/across_comp/page.dart';
 import 'pages/across_page/page1/view.dart';
 import 'pages/id/page.dart';
@@ -31,7 +32,7 @@ class _MyAppState extends State<MyApp> {
           children: [
             ListTile(
               title: const Text("1、单个刷新"),
-              onTap: ()=>Getx.push(() => const SinglePage()),
+              onTap: () => Getx.push(() => const SinglePage()),
             ),
             ListTile(
               title: const Text("2、多个位置同时刷新"),

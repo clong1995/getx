@@ -1,7 +1,7 @@
-import 'package:getx/logic.dart';
 import 'package:getx/getx.dart';
-import '../page2/view.dart';
+import 'package:getx/logic.dart';
 
+import '../page2/view.dart';
 import 'state.dart';
 
 class Page1Logic extends Logic<Page1Logic> {

@@ -5,7 +5,7 @@ import 'logic_dict.dart';
 
 abstract class Logic<T> {
   final Map<String, void Function()> _updateNamedDict = {};
-  final Map<int,void Function()> _updateDict = {};
+  final Map<int, void Function()> _updateDict = {};
   late BuildContext context = getxNavKey.currentState!.context;
 
   void update([List<String>? ids]) {
@@ -45,10 +45,9 @@ abstract class Logic<T> {
     String? id,
     required Widget Function() builder,
   }) {
-
     return _GetxWidget<T>(
       builder: builder,
-      onInit: (void Function() update,int hashCode) {
+      onInit: (void Function() update, int hashCode) {
         if (id == null) {
           _updateDict[hashCode] = update;
         } else {
@@ -57,13 +56,13 @@ abstract class Logic<T> {
       },
       onDispose: (int hashCode) {
         //移除update
-        if(id == null){
+        if (id == null) {
           _updateDict.remove(hashCode);
-        }else{
+        } else {
           _updateNamedDict.remove(id);
         }
         //当这个页面的各个builder都销毁的时候，
-        if(_updateNamedDict.isEmpty && _updateDict.isEmpty){
+        if (_updateNamedDict.isEmpty && _updateDict.isEmpty) {
           LogicDict.remove<T>();
           onDispose();
         }
@@ -74,7 +73,7 @@ abstract class Logic<T> {
 
 class _GetxWidget<T> extends StatefulWidget {
   final Widget Function() builder;
-  final void Function(void Function() update,int hashCode) onInit;
+  final void Function(void Function() update, int hashCode) onInit;
   final void Function(int hashCode) onDispose;
 
   const _GetxWidget({
