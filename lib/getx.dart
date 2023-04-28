@@ -9,7 +9,7 @@ class Getx {
   static BuildContext get context => _context;
 
   //跳转到一个新的页面
-  static Future<T?> push<T>(StatelessWidget Function() page,
+  static Future<T?> push<T>(Widget Function() page,
       [Object? arguments]) {
     return Navigator.push<T>(
       _context,
