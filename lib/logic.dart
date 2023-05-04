@@ -4,18 +4,12 @@ class _LogicDict {
   static final Map<int, dynamic> _logicDict = {};
 
   static void set<T>(T logic) {
-    if (!contain<T>()) {
-      _logicDict[T.hashCode] = logic;
-    }
+    if (!contain<T>()) _logicDict[T.hashCode] = logic;
   }
 
-  static T get<T>() {
-    return _logicDict[T.hashCode] as T;
-  }
+  static T get<T>() => _logicDict[T.hashCode] as T;
 
-  static bool contain<T>() {
-    return _logicDict.containsKey(T.hashCode);
-  }
+  static bool contain<T>() => _logicDict.containsKey(T.hashCode);
 
   static void remove<T>() {
     _logicDict.remove(T.hashCode);
@@ -43,15 +37,17 @@ abstract class Logic<T> {
     }
   }
 
-  //init
+  // init
   void onInit() {}
 
-  //dispose
+  // dispose
   void onDispose() {}
 
   late BuildContext _context;
 
-  //
+  BuildContext get context => _context;
+
+  // put
   T put(BuildContext context);
 
   //增加一个logic
@@ -65,59 +61,56 @@ abstract class Logic<T> {
   Widget builder({
     String? id,
     required Widget Function() builder,
-  }) {
-    return _GetxWidget<T>(
-      builder: builder,
-      onInit: (void Function() update, int hashCode) {
-        if (id == null) {
-          _updateDict[hashCode] = update;
-        } else {
-          _updateNamedDict[id] = update;
-        }
-      },
-      onDispose: (int hashCode) {
-        //移除update
-        if (id == null) {
-          _updateDict.remove(hashCode);
-        } else {
-          _updateNamedDict.remove(id);
-        }
-        //当这个页面的各个builder都销毁的时候，
-        if (_updateNamedDict.isEmpty && _updateDict.isEmpty) {
-          _LogicDict.remove<T>();
-          onDispose();
-        }
-      },
-    );
-  }
+  }) =>
+      _GetxWidget<T>(
+        builder: builder,
+        onInit: (void Function() update, int hashCode) {
+          if (id == null) {
+            _updateDict[hashCode] = update;
+          } else {
+            _updateNamedDict[id] = update;
+          }
+        },
+        onDispose: (int hashCode) {
+          //移除update
+          if (id == null) {
+            _updateDict.remove(hashCode);
+          } else {
+            _updateNamedDict.remove(id);
+          }
+          //当这个页面的各个builder都销毁的时候，
+          if (_updateNamedDict.isEmpty && _updateDict.isEmpty) {
+            _LogicDict.remove<T>();
+            onDispose();
+          }
+        },
+      );
 
   //跳转到一个新的页面
-  Future<E?> push<E>(Widget Function() page, [Object? arguments]) {
-    return Navigator.push<E>(
-      _context,
-      MaterialPageRoute<E>(
-        builder: (BuildContext context) => page(),
-        settings: RouteSettings(
-          arguments: arguments,
+  Future<E?> push<E>(Widget Function() page, [Object? arguments]) =>
+      Navigator.push<E>(
+        _context,
+        MaterialPageRoute<E>(
+          builder: (BuildContext context) => page(),
+          settings: RouteSettings(
+            arguments: arguments,
+          ),
         ),
-      ),
-    );
-  }
+      );
 
   //关闭所有页面跳转到新的页面
   Future<E?> pushAndRemove<E>(StatelessWidget Function() page,
-      [Object? arguments]) {
-    return Navigator.pushAndRemoveUntil<E>(
-      _context,
-      MaterialPageRoute<E>(
-        builder: (BuildContext context) => page(),
-        settings: RouteSettings(
-          arguments: arguments,
+          [Object? arguments]) =>
+      Navigator.pushAndRemoveUntil<E>(
+        _context,
+        MaterialPageRoute<E>(
+          builder: (BuildContext context) => page(),
+          settings: RouteSettings(
+            arguments: arguments,
+          ),
         ),
-      ),
-      (Route<dynamic> route) => false,
-    );
-  }
+        (Route<dynamic> route) => false,
+      );
 
   //页面返回
   void pop<E>([E? result]) {
@@ -128,9 +121,7 @@ abstract class Logic<T> {
   }
 
   //参数
-  E arguments<E>() {
-    return ModalRoute.of(_context)?.settings.arguments as E;
-  }
+  E arguments<E>() => ModalRoute.of(_context)?.settings.arguments as E;
 
   //找到一个logic
   E find<E>() => _LogicDict.get<E>();
