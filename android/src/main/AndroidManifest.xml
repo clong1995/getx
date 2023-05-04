@@ -1,3 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="tech.sdhzm.getx">
-</manifest>
+<manifest package="tech.sdhzm.getx"></manifest>

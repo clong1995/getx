@@ -105,7 +105,7 @@ abstract class Logic<T> {
   }
 
   //关闭所有页面跳转到新的页面
-   Future<E?> pushAndRemove<E>(StatelessWidget Function() page,
+  Future<E?> pushAndRemove<E>(StatelessWidget Function() page,
       [Object? arguments]) {
     return Navigator.pushAndRemoveUntil<E>(
       _context,
@@ -115,7 +115,7 @@ abstract class Logic<T> {
           arguments: arguments,
         ),
       ),
-          (Route<dynamic> route) => false,
+      (Route<dynamic> route) => false,
     );
   }
 
