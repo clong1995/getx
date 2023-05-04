@@ -121,7 +121,7 @@ abstract class Logic<T> {
 
   //页面返回
   void pop<E>([E? result]) {
-    Navigator.pop<E>(
+    Navigator.maybePop<E>(
       _context,
       result,
     );
