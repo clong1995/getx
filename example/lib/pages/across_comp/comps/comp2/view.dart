@@ -7,7 +7,7 @@ class Comp2View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Comp2Logic logic = Comp2Logic().put();
+    final Comp2Logic logic = Comp2Logic().put(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

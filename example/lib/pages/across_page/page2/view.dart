@@ -7,7 +7,7 @@ class Page2View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Page2Logic logic = Page2Logic().put();
+    final Page2Logic logic = Page2Logic().put(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("page2"),

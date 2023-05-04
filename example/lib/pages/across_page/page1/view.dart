@@ -7,7 +7,7 @@ class Page1View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Page1Logic logic = Page1Logic().put();
+    final Page1Logic logic = Page1Logic().put(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("跨页面调用"),

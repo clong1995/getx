@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:getx/logic.dart';
 
 import 'state.dart';
@@ -11,5 +12,5 @@ class MultipleLogic extends Logic<MultipleLogic> {
   }
 
   @override
-  MultipleLogic put() => putLogic(this);
+  MultipleLogic put(BuildContext context) => putLogic(this, context);
 }

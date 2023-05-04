@@ -1,4 +1,4 @@
-import 'package:getx/getx.dart';
+import 'package:flutter/material.dart';
 import 'package:getx/logic.dart';
 
 import '../comp1/logic.dart';
@@ -8,7 +8,7 @@ class Comp2Logic extends Logic<Comp2Logic> {
   final Comp2State state = Comp2State();
 
   void onPressed() {
-    Getx.find<Comp1Logic>().now();
+    find<Comp1Logic>().now();
   }
 
   void now() {
@@ -17,5 +17,5 @@ class Comp2Logic extends Logic<Comp2Logic> {
   }
 
   @override
-  Comp2Logic put() => putLogic(this);
+  Comp2Logic put(BuildContext context) => putLogic(this, context);
 }

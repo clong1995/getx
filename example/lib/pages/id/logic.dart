@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:getx/logic.dart';
 
 import 'state.dart';
@@ -17,5 +18,5 @@ class IdLogic extends Logic<IdLogic> {
   }
 
   @override
-  IdLogic put() => putLogic(this);
+  IdLogic put(BuildContext context) => putLogic(this, context);
 }

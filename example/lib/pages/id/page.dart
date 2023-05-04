@@ -7,7 +7,7 @@ class IdPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final IdLogic logic = IdLogic().put();
+    final IdLogic logic = IdLogic().put(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("按照id刷新"),

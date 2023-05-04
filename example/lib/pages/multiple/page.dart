@@ -7,7 +7,7 @@ class MultiplePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MultipleLogic logic = MultipleLogic().put();
+    final MultipleLogic logic = MultipleLogic().put(context);
     return Scaffold(
       appBar: AppBar(
         title: logic.builder(

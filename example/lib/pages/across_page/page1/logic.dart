@@ -1,4 +1,4 @@
-import 'package:getx/getx.dart';
+import 'package:flutter/material.dart';
 import 'package:getx/logic.dart';
 
 import '../page2/view.dart';
@@ -13,9 +13,9 @@ class Page1Logic extends Logic<Page1Logic> {
   }
 
   void onPressed() {
-    Getx.push(() => const Page2View());
+    push(() => const Page2View());
   }
 
   @override
-  Page1Logic put() => putLogic(this);
+  Page1Logic put(BuildContext context) => putLogic(this, context);
 }

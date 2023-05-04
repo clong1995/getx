@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
 
-import 'key.dart';
-import 'logic_dict.dart';
+class _LogicDict {
+  static final Map<int, dynamic> _logicDict = {};
+
+  static void set<T>(T logic) {
+    if (!contain<T>()) {
+      _logicDict[T.hashCode] = logic;
+    }
+  }
+
+  static T get<T>() {
+    return _logicDict[T.hashCode] as T;
+  }
+
+  static bool contain<T>() {
+    return _logicDict.containsKey(T.hashCode);
+  }
+
+  static void remove<T>() {
+    _logicDict.remove(T.hashCode);
+  }
+}
 
 abstract class Logic<T> {
   final Map<String, void Function()> _updateNamedDict = {};
   final Map<int, void Function()> _updateDict = {};
-  late BuildContext context = getxNavKey.currentState!.context;
 
   void update([List<String>? ids]) {
     if (ids != null) {
@@ -31,14 +49,17 @@ abstract class Logic<T> {
   //dispose
   void onDispose() {}
 
+  late BuildContext _context;
+
   //
-  T put();
+  T put(BuildContext context);
 
   //增加一个logic
-  T putLogic(T logic) {
-    if (!LogicDict.contain<T>()) onInit(); //保证只执行一次
-    LogicDict.set<T>(logic);
-    return LogicDict.get<T>();
+  T putLogic(T logic, BuildContext context) {
+    _context = context;
+    if (!_LogicDict.contain<T>()) onInit(); //保证只执行一次
+    _LogicDict.set<T>(logic);
+    return _LogicDict.get<T>();
   }
 
   Widget builder({
@@ -63,12 +84,56 @@ abstract class Logic<T> {
         }
         //当这个页面的各个builder都销毁的时候，
         if (_updateNamedDict.isEmpty && _updateDict.isEmpty) {
-          LogicDict.remove<T>();
+          _LogicDict.remove<T>();
           onDispose();
         }
       },
     );
   }
+
+  //跳转到一个新的页面
+  Future<E?> push<E>(Widget Function() page, [Object? arguments]) {
+    return Navigator.push<E>(
+      _context,
+      MaterialPageRoute<E>(
+        builder: (BuildContext context) => page(),
+        settings: RouteSettings(
+          arguments: arguments,
+        ),
+      ),
+    );
+  }
+
+  //关闭所有页面跳转到新的页面
+   Future<E?> pushAndRemove<E>(StatelessWidget Function() page,
+      [Object? arguments]) {
+    return Navigator.pushAndRemoveUntil<E>(
+      _context,
+      MaterialPageRoute<E>(
+        builder: (BuildContext context) => page(),
+        settings: RouteSettings(
+          arguments: arguments,
+        ),
+      ),
+          (Route<dynamic> route) => false,
+    );
+  }
+
+  //页面返回
+  void pop<E>([E? result]) {
+    Navigator.pop<E>(
+      _context,
+      result,
+    );
+  }
+
+  //参数
+  E arguments<E>() {
+    return ModalRoute.of(_context)?.settings.arguments as E;
+  }
+
+  //找到一个logic
+  E find<E>() => _LogicDict.get<E>();
 }
 
 class _GetxWidget<T> extends StatefulWidget {

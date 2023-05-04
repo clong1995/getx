@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:getx/logic.dart';
 
 import 'state.dart';
@@ -11,5 +12,5 @@ class SingleLogic extends Logic<SingleLogic> {
   }
 
   @override
-  SingleLogic put() => putLogic(this);
+  SingleLogic put(BuildContext context) => putLogic(this, context);
 }

@@ -7,7 +7,7 @@ class SinglePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SingleLogic logic = SingleLogic().put();
+    final SingleLogic logic = SingleLogic().put(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("单个刷新"),

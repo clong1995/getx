@@ -7,7 +7,7 @@ class Comp1View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Comp1Logic logic = Comp1Logic().put();
+    final Comp1Logic logic = Comp1Logic().put(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
