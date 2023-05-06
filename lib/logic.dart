@@ -85,7 +85,7 @@ abstract class Logic<T> {
 
   //移除logic
   void dispose(){
-    _LogicDict.remove();
+    _LogicDict.remove<T>();
     onDispose();
   }
 
