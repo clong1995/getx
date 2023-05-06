@@ -79,12 +79,15 @@ abstract class Logic<T> {
             _updateNamedDict.remove(id);
           }
           //当这个页面的各个builder都销毁的时候，
-          if (_updateNamedDict.isEmpty && _updateDict.isEmpty) {
-            _LogicDict.remove<T>();
-            onDispose();
-          }
+          if (_updateNamedDict.isEmpty && _updateDict.isEmpty) dispose();
         },
       );
+
+  //移除logic
+  void dispose(){
+    _LogicDict.remove();
+    onDispose();
+  }
 
   //跳转到一个新的页面
   Future<E?> push<E>(Widget Function() page, [Object? arguments]) =>
