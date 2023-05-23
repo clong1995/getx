@@ -84,7 +84,7 @@ abstract class Logic<T> {
       );
 
   //移除logic
-  void dispose(){
+  void dispose() {
     _LogicDict.remove<T>();
     onDispose();
   }
@@ -168,4 +168,8 @@ class _GetxWidgetState<T> extends State<_GetxWidget> {
     widget.onDispose(hashCode);
     super.dispose();
   }
+}
+
+void logicDispose() {
+  _LogicDict._logicDict.clear();
 }
