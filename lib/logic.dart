@@ -170,6 +170,10 @@ class _GetxWidgetState<T> extends State<_GetxWidget> {
   }
 }
 
-void logicDispose() {
+//找到一个logic
+E logicFind<E>() => _LogicDict.get<E>();
+
+//销毁所有logic
+/*void logicDestroy() {
   _LogicDict._logicDict.clear();
-}
+}*/
