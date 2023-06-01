@@ -9,9 +9,11 @@ class ArgsLogic extends Logic<ArgsLogic> {
 
   @override
   void onInit() {
-    ArgsArgs args = arguments<ArgsArgs>();
-    name = args.name;
-    age = args.age;
+    ArgsArgs? args = arguments<ArgsArgs>();
+    if (args != null) {
+      name = args.name;
+      age = args.age;
+    }
   }
 
   @override

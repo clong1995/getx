@@ -124,7 +124,13 @@ abstract class Logic<T> {
   }
 
   //参数
-  E arguments<E>() => ModalRoute.of(_context)?.settings.arguments as E;
+  E? arguments<E>() {
+    ModalRoute<E>? modalRoute = ModalRoute.of<E>(_context);
+    if (modalRoute == null) {
+      return null;
+    }
+    return modalRoute.settings.arguments as E;
+  }
 
   //找到一个logic
   E find<E>() => _LogicDict.get<E>();
