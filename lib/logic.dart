@@ -145,7 +145,11 @@ abstract class Logic<T> {
     if (modalRoute == null) {
       return null;
     }
-    return modalRoute.settings.arguments as E;
+    Object? arguments = modalRoute.settings.arguments;
+    if(arguments == null){
+      return null;
+    }
+    return arguments as E;
   }
 
   //找到一个logic
