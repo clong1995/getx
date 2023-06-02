@@ -141,7 +141,7 @@ abstract class Logic<T> {
 
   //参数
   E? arguments<E>() {
-    ModalRoute<E>? modalRoute = ModalRoute.of<E>(_context);
+    ModalRoute? modalRoute = ModalRoute.of(_context);
     if (modalRoute == null) {
       return null;
     }
@@ -199,3 +199,11 @@ E logicFind<E>() => _LogicDict.get<E>();
 /*void logicDestroy() {
   _LogicDict._logicDict.clear();
 }*/
+
+
+
+///下一版，去掉StatelessWidget外壳，直接GetxWidget
+///能省掉
+///final XxxLogic logic = XxxLogic().put(context);
+///去掉 content
+///解决没有builder时候没法销毁logic的bug
