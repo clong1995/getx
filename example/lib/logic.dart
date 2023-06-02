@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getx/logic.dart';
+import 'pages/test/page.dart';
 
 import 'pages/across_comp/page.dart';
 import 'pages/across_page/page1/view.dart';
@@ -33,6 +34,8 @@ class MainLogic extends Logic<MainLogic> {
           name: "小华",
         ),
       );
+
+  void onTestPageTap() => push(() => const TestPage());
 
   @override
   MainLogic put(BuildContext context) => putLogic(this, context);

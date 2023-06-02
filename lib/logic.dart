@@ -53,7 +53,23 @@ abstract class Logic<T> {
   //增加一个logic
   T putLogic(T logic, BuildContext context) {
     _context = context;
-    if (!_LogicDict.contain<T>()) onInit(); //保证只执行一次
+    if (!_LogicDict.contain<T>()) {
+      onInit(); //保证只执行一次
+    }/*else{
+      //存在。检查是否widget还在，没有销毁。（当没有使用builder的时候）
+      T tLogic = _LogicDict.get<T>();//无类型的logic对象
+      if(tLogic != null){
+        Logic eLogic = (tLogic as Logic);//转换成接口类型的logic对象
+        if(!eLogic.context.mounted){//取到的是已经不存在widget的logic
+          _LogicDict.remove<T>();
+          eLogic.onDispose();
+          //再次执行
+          onInit();
+        }
+      }
+    }*/
+
+
     _LogicDict.set<T>(logic);
     return _LogicDict.get<T>();
   }

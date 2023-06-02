@@ -49,6 +49,10 @@ class MyApp extends StatelessWidget {
             title: const Text("7、跨页面传递参数"),
             onTap: logic.onArgsPageTap,
           ),
+          ListTile(
+            title: const Text("8、测试"),
+            onTap: logic.onTestPageTap,
+          ),
         ],
       ),
     );
