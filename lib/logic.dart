@@ -141,11 +141,7 @@ abstract class Logic<T> {
 
   //参数
   E? arguments<E>() {
-    ModalRoute? modalRoute = ModalRoute.of(_context);
-    if (modalRoute == null) {
-      return null;
-    }
-    Object? arguments = modalRoute.settings.arguments;
+    Object? arguments = ModalRoute.of(_context)?.settings.arguments;
     if(arguments == null){
       return null;
     }
