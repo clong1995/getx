@@ -1,11 +1,11 @@
 name: getx
 description: A new Flutter project.
-version: 0.0.7
+version: 0.0.8
 homepage: https://sdhzm.tech
 
 environment:
-  sdk: '>=3.0.1 <4.0.0'
-  flutter: ">=3.3.0"
+  sdk: '>=3.0.3 <4.0.0'
+  flutter: ">=3.10.4"
 
 dependencies:
   flutter:

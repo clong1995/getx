@@ -7,7 +7,11 @@ class _LogicDict {
     if (!contain<T>()) _logicDict[T.hashCode] = logic;
   }
 
-  static T get<T>() => _logicDict[T.hashCode] as T;
+  static T? get<T>() {
+    return _logicDict.containsKey(T.hashCode)
+        ? _logicDict[T.hashCode] as T
+        : null;
+  }
 
   static bool contain<T>() => _logicDict.containsKey(T.hashCode);
 
@@ -55,7 +59,8 @@ abstract class Logic<T> {
     _context = context;
     if (!_LogicDict.contain<T>()) {
       onInit(); //保证只执行一次
-    }/*else{
+    }
+    /*else{
       //存在。检查是否widget还在，没有销毁。（当没有使用builder的时候）
       T tLogic = _LogicDict.get<T>();//无类型的logic对象
       if(tLogic != null){
@@ -69,9 +74,8 @@ abstract class Logic<T> {
       }
     }*/
 
-
     _LogicDict.set<T>(logic);
-    return _LogicDict.get<T>();
+    return _LogicDict.get<T>()!;
   }
 
   Widget builder({
@@ -142,14 +146,14 @@ abstract class Logic<T> {
   //参数
   E? arguments<E>() {
     Object? arguments = ModalRoute.of(_context)?.settings.arguments;
-    if(arguments == null){
+    if (arguments == null) {
       return null;
     }
     return arguments as E;
   }
 
   //找到一个logic
-  E find<E>() => _LogicDict.get<E>();
+  E? find<E>() => _LogicDict.get<E>();
 }
 
 class _GetxWidget<T> extends StatefulWidget {
@@ -193,14 +197,12 @@ class _GetxWidgetState<T> extends State<_GetxWidget> {
 }
 
 //找到一个logic
-E logicFind<E>() => _LogicDict.get<E>();
+E? logicFind<E>() => _LogicDict.get<E>();
 
 //销毁所有logic
 /*void logicDestroy() {
   _LogicDict._logicDict.clear();
 }*/
-
-
 
 ///下一版，去掉StatelessWidget外壳，直接GetxWidget
 ///能省掉

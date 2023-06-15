@@ -5,7 +5,7 @@ import '../page1/logic.dart';
 
 class Page2Logic extends Logic<Page2Logic> {
   void onPressed() {
-    find<Page1Logic>().now();
+    find<Page1Logic>()?.now();
   }
 
   @override

@@ -8,7 +8,7 @@ class Comp1Logic extends Logic<Comp1Logic> {
   final Comp1State state = Comp1State();
 
   void onPressed() {
-    find<Comp2Logic>().now();
+    find<Comp2Logic>()?.now();
   }
 
   void now() {
