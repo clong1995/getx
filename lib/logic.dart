@@ -122,7 +122,7 @@ abstract class Logic<T> {
       );
 
   //关闭所有页面跳转到新的页面
-  Future<E?> pushAndRemove<E>(StatelessWidget Function() page,
+  Future<E?> pushAndRemove<E>(Widget Function() page,
           [Object? arguments]) =>
       Navigator.pushAndRemoveUntil<E>(
         _context,
